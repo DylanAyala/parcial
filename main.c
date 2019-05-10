@@ -70,7 +70,7 @@ int addAuto(eAuto aut[],char patente[], int lugar, int id, int idMarca, int idCo
 void printAuto(eAuto aut, eColor col, eMarca mar);
 char validarChar(char character);
 int validarIDAuto(eAuto aut[], int lengAuto, int id);
-int removeAuto(eAuto aut);
+int removeAuto(eAuto aut[], int index);
 int findLugar(eAuto aut[], int lenAuto);
 int validarMarca(int id);
 int showAutos(eAuto aut[], int lengAuto, eMarca mar[], int lengMar, eColor col[], int lengColor);
@@ -159,7 +159,7 @@ int main()
                     printf("No hay un auto con el Id ingresado");
                 }else
                 {
-                    removeAuto(autos[indexAuto]);
+                    removeAuto(autos, indexAuto);
                     printf("%d\n", indexAuto);
                     printf("Se dio la baja correctamente\n");
                 }
@@ -335,8 +335,8 @@ int validarIDAuto(eAuto aut[], int lengAuto, int id)
     return index;
 }
 
-int removeAuto(eAuto aut)
+int removeAuto(eAuto aut[], int index)
 {
-    aut.isEmpty = 0;
+    aut[index].isEmpty = 0;
     return 0;
 }
