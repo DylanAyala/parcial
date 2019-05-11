@@ -234,8 +234,10 @@ int indexMarca(eMarca mar[], int lengMar, eAuto aut)
     for(int i=0; i<lengMar; i++)
     {
         if(aut.idMarca==mar[i].id)
+        {
             index=i;
-        break;
+            break;
+        }
     }
     return index;
 }
@@ -247,8 +249,11 @@ int indexColor(eColor col[], int lengCol, eAuto aut)
     for(int i=0; i<lengCol; i++)
     {
         if(aut.idColor==col[i].id)
+        {
             index=i;
-        break;
+            break;
+        }
+
     }
     return index;
 }
