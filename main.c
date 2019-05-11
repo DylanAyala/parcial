@@ -67,13 +67,15 @@ int indexMarca(eMarca mar[], int lengMar, eAuto aut);
 int indexColor(eColor col[], int lengCol, eAuto aut);
 int menu(void);
 int addAuto(eAuto aut[],char patente[], int lugar, int id, int idMarca, int idColor, int modelo);
-void printAuto(eAuto aut, eColor col, eMarca mar);
+void printAuto(eAuto aut, eColor col[], int indexCol, eMarca mar[], int indexMar);
 char validarChar(char character);
 int validarIDAuto(eAuto aut[], int lengAuto, int id);
 int removeAuto(eAuto aut[], int index);
 int findLugar(eAuto aut[], int lenAuto);
 int validarMarca(int id);
 int showAutos(eAuto aut[], int lengAuto, eMarca mar[], int lengMar, eColor col[], int lengColor);
+
+
 
 int main()
 {
@@ -219,7 +221,7 @@ int showAutos(eAuto aut[], int lengAuto, eMarca mar[], int lengMar, eColor col[]
         {
             idexColor = indexColor(col, lengColor, aut[i]);
             idexMarca = indexMarca(mar,lengMar, aut[i]);
-            printAuto(aut[i], col[idexColor], mar[idexMarca]);
+            printAuto(aut[i], col, idexColor, mar, idexMarca );
         }
     }
     return 0;
@@ -252,9 +254,9 @@ int indexColor(eColor col[], int lengCol, eAuto aut)
 }
 
 
-void printAuto(eAuto aut, eColor col, eMarca mar)
+void printAuto(eAuto aut, eColor col[],int indexCol, eMarca mar[],int indexMar)
 {
-    printf("%d   %s  %s  %s  %d\n", aut.id, aut.patente, mar.descripcion, col.nombreColor, aut.modelo);
+    printf("%d   %s  %s  %s  %d\n", aut.id, aut.patente, mar[indexMar].descripcion, col[indexCol].nombreColor, aut.modelo);
 }
 
 int findLugar(eAuto aut[], int lenAuto)
