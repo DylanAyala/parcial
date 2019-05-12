@@ -113,6 +113,7 @@ int main()
     int indexTrabajo;
     int idServicio;
     int idTrabajo= 1;
+    int addTrabajoOk = 0;
     char patente[7];
     initAutos(autos, LENGAUTOS);
     initTrabajos(trabajos, LENGTRABAJOS);
@@ -276,6 +277,7 @@ int main()
 
                         addTrabajo(trabajos, idTrabajo, indexTrabajo, patente, idServicio, fechas);
                         idTrabajo++;
+                        addTrabajoOk = 1;
 
                     }
 
@@ -289,9 +291,15 @@ int main()
             }
             break;
         case 9:
+            if(addTrabajoOk){
                 system("cls");
                 printf("LISTADO DE TRABAJOS\n\n");
                 showTrabajos(trabajos, LENGTRABAJOS, sevicios, LENGSEVICIOS);
+            }else
+            {
+                printf("Se debe ingresar un trabajo primero\n");
+            }
+
             break;
         default:
             printf("Opcion no valida\n");
@@ -315,6 +323,8 @@ int menu()
     printf("7- LISTAR SERVICIOS\n");
     printf("8- ALTA TRABAJOS\n");
     printf("9- LISTAR TRABAJOS\n");
+    printf("0- SALIR\n");
+    printf("Ingrese opcion: ");
     fflush(stdin);
     scanf("%d",&choice);
     return choice;
@@ -683,5 +693,5 @@ int indexServicio(eServicio ser[], int lengSer, int id)
 
 int mostrarTrabajo(eTrabajo tra, eServicio ser)
 {
-    printf("%d  %s  %s  %d/%d/%d", tra.id, tra.patente, ser.descripcion, tra.fecha.anio, tra.fecha.mes, tra.fecha.dia);
+    printf("%d  %s  %s  %d/%d/%d\n", tra.id, tra.patente, ser.descripcion, tra.fecha.anio, tra.fecha.mes, tra.fecha.dia);
 }
