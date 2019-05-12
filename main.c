@@ -8,7 +8,7 @@
 #define LENGPATENTE 7
 #define LENGSERVICIO 25
 #define LENGAUTOS 5
-#define LENGSEVICIOS 5
+#define LENGSEVICIOS 4
 #define LENGTRABAJOS 10
 #define LENGFECHAS 10
 #define LENGCOLORES 5
@@ -74,16 +74,21 @@ int removeAuto(eAuto aut[], int index);
 int findLugar(eAuto aut[], int lenAuto);
 int validarMarca(int id);
 int showAutos(eAuto aut[], int lengAuto, eMarca mar[], int lengMar, eColor col[], int lengColor);
-
-
+int validoPatente(eAuto aut[], int largAut, char patente[]);
+int showMarcar(eMarca mar[], int lenMar);
+int showColores(eColor col[], int lengCol);
+int showServicio(eServicio ser[], int lengSer);
+int validoColor(int id);
+int modificacionAuto(eAuto aut[], int lengAut, eColor col[], int lengCol, eMarca mar[], int lengMar);
+int indexPatente(char pantente[], eAuto aut[], int lengAut);
 
 int main()
 {
     eFecha fechas[LENGFECHAS];
-    eMarca marcas[LENGMARCAS]= {{1, "Renault"}, {2,"Fiat"}, {3,"Ford"}, {4,"Checrolet"}, {5, "Peugeot"}};
-    eColor colores[LENGCOLORES] = {{1,"NEGRO"}, {2,"Blanco"}, {3,"Gris"}, {4, "Rojo"}, {5, "Azul"}};
+    eMarca marcas[LENGMARCAS]= {{1000, "Renault"}, {1001,"Fiat"}, {1002,"Ford"}, {1003,"Checrolet"}, {1004, "Peugeot"}};
+    eColor colores[LENGCOLORES] = {{5000,"NEGRO"}, {5001,"Blanco"}, {5002,"Gris"}, {5003, "Rojo"}, {5004, "Azul"}};
     eAuto autos[LENGAUTOS];
-    eServicio sevicios[LENGSERVICIO]= {{1,"Lavado", 250}, {2,"Pulido", 300}, {3, " Encerado", 400},{4,"Completo", 600}};
+    eServicio sevicios[LENGSERVICIO]= {{20000,"Lavado", 250}, {20001,"Pulido", 300}, {20002, " Encerado", 400},{20003,"Completo", 600}};
     eTrabajo trabajos[LENGTRABAJOS];
 
     int initAutoOk;
@@ -96,6 +101,7 @@ int main()
     int id= 1;
     int idAuto;
     int indexAuto;
+    int patenteOk;
     char patente[7];
     initAutoOk = initAutos(autos, LENGAUTOS);
 
@@ -121,22 +127,28 @@ int main()
                 printf("Ingrese Patente: ");
                 scanf("%s", patente);
 
-                printf("ingrese marca: \n");
-                for(int i=0; i<LENGMARCAS; i++)
+                patenteOk = validoPatente(autos, LENGAUTOS, patente);
+
+                while(patenteOk == 1)
                 {
-                    printf("%d- %s\n", marcas[i].id,marcas[i].descripcion);
+                    printf("Ingrese Patente: ");
+                    scanf("%s", patente);
+                    patenteOk = validoPatente(autos, LENGAUTOS, patente);
                 }
+
+                printf("ingrese marca: \n");
+                showMarcar(marcas, LENGMARCAS);
+
                 fflush(stdin);
                 scanf("%d", &idMarca);
 
                 idMarca = validarMarca(idMarca);
                 printf("ingrese Color:  \n");
-                for(int i=0; i<LENGCOLORES; i++)
-                {
-                    printf("%d- %s\n", colores[i].id,colores[i].nombreColor);
-                }
+                showColores(colores, LENGCOLORES);
                 fflush(stdin);
                 scanf("%d", &idColor);
+                idColor = validoColor(idColor);
+
                 printf("Ingrese modelo: ");
                 fflush(stdin);
                 scanf("%d", &modelo);
@@ -146,31 +158,67 @@ int main()
                 addAutos = 1;
             }
             break;
-
+        case 2:
+            if(addAutos)
+            modificacionAuto(autos, LENGAUTOS, colores, LENGCOLORES, marcas, LENGMARCAS);
+            else
+                printf("Se debe ingresar un auto primero\n");
+            break;
         case 3:
             if(addAutos)
             {
-               system("cls");
+                system("cls");
                 printf("BAJA DE AUTO\n\n");
                 showAutos(autos, LENGAUTOS, marcas, LENGMARCAS, colores, LENGCOLORES);
+                printf("0- Volver al menu anterior\n");
                 printf("Igrese ID del auto: ");
                 scanf("%d", &idAuto);
-                indexAuto = validarIDAuto(autos, LENGAUTOS, idAuto);
-                if(indexAuto ==-1)
+                if(idAuto==1)
                 {
-                    printf("No hay un auto con el Id ingresado");
-                }else
-                {
-                    removeAuto(autos, indexAuto);
-                    printf("%d\n", indexAuto);
-                    printf("Se dio la baja correctamente\n");
+                    indexAuto = validarIDAuto(autos, LENGAUTOS, idAuto);
+                    if(indexAuto ==-1)
+                    {
+                        printf("No hay un auto con el Id ingresado");
+                    }
+                    else
+                    {
+                        removeAuto(autos, indexAuto);
+                        printf("%d\n", indexAuto);
+                        printf("Se dio la baja correctamente\n");
+                    }
                 }
 
-            }else
+            }
+            else
             {
                 printf("No se Ingreso ningun auto\n");
             }
 
+            break;
+        case 4:
+            if(addAutos)
+            {
+                showAutos(autos, LENGAUTOS, marcas, LENGMARCAS, colores, LENGCOLORES);
+            }
+            else
+            {
+                printf("Se debe ingresar un auto primero\n");
+            }
+            break;
+        case 5:
+            system("cls");
+            printf("LISTA DE MARCAS\n");
+            showMarcar(marcas, LENGMARCAS);
+            break;
+        case 6:
+            system("cls");
+            printf("LISTA DE COLORES\n");
+            showColores(colores, LENGCOLORES);
+            break;
+        case 7:
+            system("cls");
+            printf("LISTA DE SERVICIOS\n");
+            showServicio(sevicios, LENGSEVICIOS);
             break;
         default:
             printf("Opcion no valida\n");
@@ -186,14 +234,14 @@ int menu()
     system("cls");
     printf("*******MENU*****\n\n");
     printf("1- ALTA AUTO\n");
-    printf("2-MODIFICACION AUTO\n");
-    printf("3-BAJA AUTO\n");
+    printf("2- MODIFICACION AUTO\n");
+    printf("3- BAJA AUTO\n");
     printf("4- LISTAR AUTOS\n");
     printf("5- LISTAR MARCAS\n");
     printf("6- LISTAR COLORES\n");
-    printf("7- LISTAR SERVICION\n");
-    printf("8- ALTA TRANAJOS\n");
-    printf("9- LISTAR TRANAJOS\n");
+    printf("7- LISTAR SERVICIOS\n");
+    printf("8- ALTA TRABAJOS\n");
+    printf("9- LISTAR TRABAJOS\n");
     fflush(stdin);
     scanf("%d",&choice);
     return choice;
@@ -319,9 +367,9 @@ char validarChar(char character)
 
 int validarMarca(int id)
 {
-    while(id<0 || id>5)
+    while(id<1000 || id>1004)
     {
-        printf("Opcion incorrecta, reingrese");
+        printf("\nOpcion incorrecta, reingrese: ");
         fflush(stdin);
         scanf("%d", &id);
     }
@@ -332,7 +380,7 @@ int validarIDAuto(eAuto aut[], int lengAuto, int id)
 {
     int index=-1;
 
-    for(int i=0; i<lengAuto;i++)
+    for(int i=0; i<lengAuto; i++)
     {
         if(aut[i].isEmpty == 1 && aut[i].id == id)
         {
@@ -346,4 +394,124 @@ int removeAuto(eAuto aut[], int index)
 {
     aut[index].isEmpty = 0;
     return 0;
+}
+
+int validoPatente(eAuto aut[], int largAut, char patente[])
+{
+    int index = -1;
+
+    for(int i=0; i<largAut; i++)
+    {
+        if(strcmp(aut[i].patente, patente)==0)
+        {
+            printf("La pantente ingresada ya existe\n");
+
+            index =1;
+        }
+    }
+    return index;
+}
+
+int showMarcar(eMarca mar[], int lenMar)
+{
+    for(int i=0; i<lenMar; i++)
+    {
+        printf("%d- %s\n", mar[i].id,mar[i].descripcion);
+    }
+    return 0;
+}
+int showColores(eColor col[], int lengCol)
+{
+    for(int i=0; i<lengCol; i++)
+    {
+        printf("%d- %s\n", col[i].id,col[i].nombreColor);
+    }
+    return 0;
+}
+
+int showServicio(eServicio ser[], int lengSer)
+{
+
+    for(int i=0; i<lengSer; i++)
+    {
+        printf("%d- %s %.2f\n", ser[i].id, ser[i].descripcion, ser[i].precio);
+    }
+    return 0;
+}
+
+int validoColor(int id)
+{
+    while(id<5000 || id>5004)
+    {
+        printf("\nOpcion incorrecta, reingrese: ");
+        fflush(stdin);
+        scanf("%d", &id);
+    }
+    return id;
+}
+
+int modificacionAuto(eAuto aut[], int lengAut, eColor col[], int lengCol, eMarca mar[], int lengMar)
+{
+    char patente[LENGPATENTE];
+    int idexPat;
+    int choice;
+    int idColor;
+    int modelo;
+    system("cls");
+    printf("Modificacion de Auto\n\n");
+
+    showAutos(aut, lengAut, mar, lengMar, col, lengCol);
+
+    printf("Ingrese Patente: ");
+    fflush(stdin);
+    scanf("%s", patente);
+    idexPat = indexPatente(patente, aut, lengAut);
+    if(idexPat == -1)
+    {
+        printf("No se encontro la patente ingresada\n");
+    }
+    else
+    {   system("cls");
+        printf("MENU DE MODIFICACION\n\n");
+        printf("1- COLOR\n");
+        printf("2- Modelos\n");
+        fflush(stdin);
+        scanf("%d", &choice);
+        switch(choice)
+        {
+        case 1:
+            system("cls");
+            printf("COLORES A ELEGIR\n\n");
+            showColores(col, lengCol);
+            printf("Ingrese el color: ");
+            fflush(stdin);
+            scanf("%d", &idColor);
+            idColor = validoColor(idColor);
+            aut[idexPat].idColor = idColor;
+            break;
+        case 2:
+            system("cls");
+            printf("Ingrese Modelo: ");
+            fflush(stdin);
+            scanf("%d", &modelo);
+            aut[idexPat].modelo = modelo;
+            break;
+        default:
+            printf("Opcion incorrecta \n");
+        }
+    }
+}
+
+
+int indexPatente(char pantente[], eAuto aut[], int lengAut)
+{
+    int index = -1;
+    for(int i= 0; i<lengAut; i++)
+    {
+        if(strcmp(pantente, aut[i].patente)==0)
+        {
+            index = i;
+        }
+    }
+    return index;
 }
