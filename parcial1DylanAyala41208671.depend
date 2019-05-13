@@ -7,11 +7,83 @@
 	<conio.h>
 	<string.h>
 
-1557693649 source:c:\users\dylan\desktop\parcial\main.c
+1557754205 source:c:\users\dylan\desktop\parcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdlib.h>
 	<ctype.h>
 	<conio.h>
 	<string.h>
+	"funcionesAuto.h"
+	"funcionesMarca.h"
+	"funcionesColores.h"
+	"funcionesServicios.h"
+	"funcionesTrabajo.h"
+
+1557754311 source:c:\users\dylan\desktop\parcial\funcionesauto.c
+	"funcionesAuto.h"
+
+1557752117 source:c:\users\dylan\desktop\parcial\funcionesmarca.c
+	"funcionesMarca.h"
+
+1557754337 c:\users\dylan\desktop\parcial\funcionesauto.h
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"funcionesMarca.h"
+	"funcionesColores.h"
+	"validaciones.h"
+
+1557752866 c:\users\dylan\desktop\parcial\funcionesmarca.h
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+
+1557753315 c:\users\dylan\desktop\parcial\funcionescolores.h
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"funcionesMarca.h"
+
+1557753314 source:c:\users\dylan\desktop\parcial\funcionescolores.c
+	"funcionesColores.h"
+
+1557753592 source:c:\users\dylan\desktop\parcial\funcionesservicios.c
+	"funcionesServicios.h"
+
+1557753538 c:\users\dylan\desktop\parcial\funcionesservicios.h
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+
+1557754007 source:c:\users\dylan\desktop\parcial\funcionestrabajo.c
+	"funcionesTrabajo.h"
+
+1557754052 c:\users\dylan\desktop\parcial\funcionestrabajo.h
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"funcionesMarca.h"
+	"funcionesServicios.h"
+
+1557754291 c:\users\dylan\desktop\parcial\validaciones.h
+	"funcionesAuto.h"
+
+1557754308 source:c:\users\dylan\desktop\parcial\validaciones.c
+	"validaciones.h"
 
