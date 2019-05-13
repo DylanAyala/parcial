@@ -25,7 +25,25 @@ typedef struct
     int isEmpty;
 } eAuto;
 
+/** \brief busca el indice del array eMarca suministrado segun el eAuto suministrado
+ *
+ * \param array eMarca
+ * \param int largo del array
+ * \param eAuto
+ * \return indice del array eColores
+ *
+ */
+
 int indexMarca(eMarca mar[], int lengMar, eAuto aut);
+
+/** \brief muestra todos los elementos del array eMarca suministrado
+ *
+ * \param array eMarca
+ * \param int largo del array
+ * \return retorna 0
+ *
+ */
+
 int showMarcar(eMarca mar[], int lenMar);
 
 

@@ -31,9 +31,33 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="funcionesAuto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesAuto.h" />
+		<Unit filename="funcionesColores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesColores.h" />
+		<Unit filename="funcionesMarca.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesMarca.h" />
+		<Unit filename="funcionesServicios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesServicios.h" />
+		<Unit filename="funcionesTrabajo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesTrabajo.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="validaciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="validaciones.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

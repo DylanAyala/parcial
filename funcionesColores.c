@@ -26,13 +26,3 @@ int showColores(eColor col[], int lengCol)
     return 0;
 }
 
-int validoColor(int id)
-{
-    while(id<5000 || id>5004)
-    {
-        printf("\nOpcion incorrecta, reingrese: ");
-        fflush(stdin);
-        scanf("%d", &id);
-    }
-    return id;
-}
